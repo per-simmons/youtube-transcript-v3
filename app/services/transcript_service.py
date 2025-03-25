@@ -4,6 +4,10 @@ from bs4 import BeautifulSoup
 from typing import Dict, List, Optional
 import logging
 
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 class TranscriptService:
     @staticmethod
     def get_video_id(url: str) -> Optional[str]:
@@ -40,28 +44,31 @@ class TranscriptService:
     def get_transcript(video_id: str) -> List[Dict[str, str]]:
         """Fetch transcript for a video."""
         try:
-            # First try to list available transcripts
-            transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
-            
-            # Try to get any available transcript
-            transcript = transcript_list.find_manually_created_transcript()
-            return transcript.fetch()
-        except NoTranscriptFound:
-            try:
-                # If no manual transcript, try auto-generated
-                transcript = transcript_list.find_generated_transcript()
-                return transcript.fetch()
-            except NoTranscriptFound:
-                try:
-                    # If still no transcript, try any available language
-                    transcript = transcript_list.find_transcript(['en'])
-                    return transcript.fetch()
-                except NoTranscriptFound:
-                    raise Exception(f"No transcript found for video {video_id}. Please check if the video has subtitles enabled.")
-        except TranscriptsDisabled:
-            raise Exception(f"Transcripts are disabled for video {video_id}. Please check if the video has subtitles enabled.")
+            # Try direct transcript fetch first
+            logger.info(f"Attempting to fetch transcript for video {video_id}")
+            transcript = YouTubeTranscriptApi.get_transcript(video_id)
+            logger.info(f"Successfully fetched transcript for video {video_id}")
+            return transcript
         except Exception as e:
-            raise Exception(f"Error fetching transcript: {str(e)}")
+            logger.error(f"Error fetching transcript for video {video_id}: {str(e)}")
+            try:
+                # If direct fetch fails, try with language specification
+                logger.info(f"Attempting to fetch English transcript for video {video_id}")
+                transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['en'])
+                logger.info(f"Successfully fetched English transcript for video {video_id}")
+                return transcript
+            except Exception as e2:
+                logger.error(f"Error fetching English transcript for video {video_id}: {str(e2)}")
+                try:
+                    # If language-specific fetch fails, try listing transcripts
+                    logger.info(f"Attempting to list available transcripts for video {video_id}")
+                    transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
+                    transcript = transcript_list.find_transcript(['en'])
+                    logger.info(f"Successfully fetched transcript from list for video {video_id}")
+                    return transcript.fetch()
+                except Exception as e3:
+                    logger.error(f"Error listing transcripts for video {video_id}: {str(e3)}")
+                    raise Exception(f"Could not retrieve transcript. Error details: {str(e3)}")
 
     @staticmethod
     def format_transcript(transcript: List[Dict[str, str]], metadata: Dict[str, str]) -> str:
@@ -103,6 +110,7 @@ class TranscriptService:
                 result = self.process_video(url.strip())
                 results.append(result)
             except Exception as e:
+                logger.error(f"Error processing video {url}: {str(e)}")
                 results.append({
                     'title': url,
                     'error': str(e)
