@@ -1,7 +1,8 @@
-from youtube_transcript_api import YouTubeTranscriptApi
+from youtube_transcript_api import YouTubeTranscriptApi, TranscriptsDisabled, NoTranscriptFound
 import requests
 from bs4 import BeautifulSoup
 from typing import Dict, List, Optional
+import logging
 
 class TranscriptService:
     @staticmethod
@@ -39,16 +40,28 @@ class TranscriptService:
     def get_transcript(video_id: str) -> List[Dict[str, str]]:
         """Fetch transcript for a video."""
         try:
-            # Try to get transcript directly
-            transcript = YouTubeTranscriptApi.get_transcript(video_id)
-            return transcript
-        except Exception as e:
-            # If direct fetch fails, try with language specification
+            # First try to list available transcripts
+            transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
+            
+            # Try to get any available transcript
+            transcript = transcript_list.find_manually_created_transcript()
+            return transcript.fetch()
+        except NoTranscriptFound:
             try:
-                transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['en'])
-                return transcript
-            except Exception as e2:
-                raise Exception(f"Could not retrieve transcript. Please check if: 1) The video has subtitles enabled, 2) The video is public, 3) The video has English subtitles available.")
+                # If no manual transcript, try auto-generated
+                transcript = transcript_list.find_generated_transcript()
+                return transcript.fetch()
+            except NoTranscriptFound:
+                try:
+                    # If still no transcript, try any available language
+                    transcript = transcript_list.find_transcript(['en'])
+                    return transcript.fetch()
+                except NoTranscriptFound:
+                    raise Exception(f"No transcript found for video {video_id}. Please check if the video has subtitles enabled.")
+        except TranscriptsDisabled:
+            raise Exception(f"Transcripts are disabled for video {video_id}. Please check if the video has subtitles enabled.")
+        except Exception as e:
+            raise Exception(f"Error fetching transcript: {str(e)}")
 
     @staticmethod
     def format_transcript(transcript: List[Dict[str, str]], metadata: Dict[str, str]) -> str:
