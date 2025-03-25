@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup
 from typing import Dict, List, Optional
 import logging
 import traceback
+import sys
+import platform
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -16,17 +18,32 @@ class TranscriptService:
         test_video_id = "EngW7tLk6R8"  # This is a popular video we know has transcripts
         try:
             logger.info(f"Testing API connection with video {test_video_id}")
+            # Log environment details
+            logger.info(f"Python Version: {sys.version}")
+            logger.info(f"Platform: {platform.platform()}")
+            logger.info(f"YouTube Transcript API Version: {YouTubeTranscriptApi.__version__}")
+            
             transcript = YouTubeTranscriptApi.get_transcript(test_video_id)
             return {
                 'status': 'success',
                 'message': 'API connection successful',
-                'transcript_length': len(transcript)
+                'transcript_length': len(transcript),
+                'environment': {
+                    'python_version': sys.version,
+                    'platform': platform.platform(),
+                    'api_version': YouTubeTranscriptApi.__version__
+                }
             }
         except Exception as e:
             error_details = {
                 'status': 'error',
                 'message': str(e),
-                'traceback': traceback.format_exc()
+                'traceback': traceback.format_exc(),
+                'environment': {
+                    'python_version': sys.version,
+                    'platform': platform.platform(),
+                    'api_version': getattr(YouTubeTranscriptApi, '__version__', 'unknown')
+                }
             }
             logger.error(f"API connection test failed: {error_details}")
             return error_details
@@ -54,14 +71,12 @@ class TranscriptService:
         url = f'https://www.youtube.com/watch?v={video_id}'
         try:
             response = requests.get(url)
-            response.raise_for_status()  # Raise an exception for bad status codes
+            response.raise_for_status()
             soup = BeautifulSoup(response.text, 'html.parser')
             
-            # Get title from meta tag or fallback to video ID
             title_tag = soup.find('meta', property='og:title')
             title = title_tag['content'] if title_tag else f"Video {video_id}"
             
-            # Get channel from meta tag or fallback to "Unknown Channel"
             channel_tag = soup.find('meta', property='og:site_name')
             channel = channel_tag['content'] if channel_tag else "Unknown Channel"
             
@@ -74,6 +89,7 @@ class TranscriptService:
             return metadata
         except Exception as e:
             logger.error(f"Error fetching metadata: {str(e)}")
+            logger.error(f"Full traceback: {traceback.format_exc()}")
             return {
                 'title': f"Video {video_id}",
                 'channel': "Unknown Channel",
@@ -85,26 +101,39 @@ class TranscriptService:
         """Fetch transcript for a video."""
         logger.info(f"Attempting to fetch transcript for video: {video_id}")
         try:
+            # Log attempt details
+            logger.info(f"Environment: Python {sys.version}, Platform: {platform.platform()}")
+            logger.info(f"YouTube Transcript API Version: {YouTubeTranscriptApi.__version__}")
+            
             # Try direct transcript fetch first
             transcript = YouTubeTranscriptApi.get_transcript(video_id)
             logger.info(f"Successfully fetched transcript for video {video_id}")
             return transcript
-        except Exception as e:
-            error_msg = str(e)
-            logger.error(f"Error fetching transcript for {video_id}: {error_msg}")
+        except TranscriptsDisabled as e:
+            error_msg = f"TranscriptsDisabled error: {str(e)}"
+            logger.error(error_msg)
             logger.error(f"Full traceback: {traceback.format_exc()}")
-            
+            raise Exception(error_msg)
+        except NoTranscriptFound as e:
+            error_msg = f"NoTranscriptFound error: {str(e)}"
+            logger.error(error_msg)
+            logger.error(f"Full traceback: {traceback.format_exc()}")
             try:
-                # If direct fetch fails, try with language specification
+                # If no transcript found, try with language specification
                 logger.info(f"Attempting to fetch English transcript for {video_id}")
                 transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['en'])
                 logger.info(f"Successfully fetched English transcript for {video_id}")
                 return transcript
             except Exception as e2:
-                error_msg2 = str(e2)
-                logger.error(f"Error fetching English transcript for {video_id}: {error_msg2}")
+                error_msg2 = f"Second attempt failed: {str(e2)}"
+                logger.error(error_msg2)
                 logger.error(f"Full traceback: {traceback.format_exc()}")
-                raise Exception(f"Could not retrieve transcript. Original error: {error_msg}, Second attempt error: {error_msg2}")
+                raise Exception(f"Could not retrieve transcript. First error: {error_msg}, Second error: {error_msg2}")
+        except Exception as e:
+            error_msg = f"Unexpected error: {str(e)}"
+            logger.error(error_msg)
+            logger.error(f"Full traceback: {traceback.format_exc()}")
+            raise Exception(error_msg)
 
     @staticmethod
     def format_transcript(transcript: List[Dict[str, str]], metadata: Dict[str, str]) -> str:
@@ -142,8 +171,11 @@ class TranscriptService:
         }
 
     def process_multiple_videos(self, urls: List[str]) -> List[Dict[str, str]]:
-        """Process multiple video URLs and return formatted transcripts."""
+        """Process multiple videos and return formatted transcripts."""
         logger.info(f"Processing multiple videos: {len(urls)} URLs")
+        logger.info(f"Environment: Python {sys.version}, Platform: {platform.platform()}")
+        logger.info(f"YouTube Transcript API Version: {YouTubeTranscriptApi.__version__}")
+        
         results = []
         for url in urls:
             try:
