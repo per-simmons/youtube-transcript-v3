@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, request
 from .api.routes import api
 import os
 
@@ -17,6 +17,10 @@ def create_app():
     def serve_static_files(path):
         if path.startswith('api/'):
             return api.handle_request(path)
-        return send_from_directory(app.static_folder, path)
+        
+        # Handle static files
+        if os.path.exists(os.path.join(app.static_folder, path)):
+            return send_from_directory(app.static_folder, path)
+        return send_from_directory(app.static_folder, 'index.html')
     
     return app 
