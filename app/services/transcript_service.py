@@ -39,18 +39,25 @@ class TranscriptService:
     def get_transcript(video_id: str) -> List[Dict[str, str]]:
         """Fetch transcript for a video."""
         try:
-            # First try to get the transcript in English
-            transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['en'])
-            return transcript
-        except NoTranscriptFound:
-            # If no English transcript, try to get any available transcript
+            # Get list of available transcripts
+            transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
+            
+            # Try to get English transcript first
             try:
-                transcript = YouTubeTranscriptApi.get_transcript(video_id)
-                return transcript
-            except Exception as e:
-                raise Exception(f"No transcript available for this video. This could be because: 1) The video has no subtitles, 2) The subtitles are disabled, or 3) The video is private.")
-        except TranscriptsDisabled:
-            raise Exception("Transcripts are disabled for this video.")
+                transcript = transcript_list.find_transcript(['en'])
+                return transcript.fetch()
+            except NoTranscriptFound:
+                # If English not available, try to get any available transcript
+                try:
+                    transcript = transcript_list.find_manually_created_transcript()
+                    return transcript.fetch()
+                except NoTranscriptFound:
+                    # If no manual transcript, try auto-generated
+                    try:
+                        transcript = transcript_list.find_generated_transcript()
+                        return transcript.fetch()
+                    except NoTranscriptFound:
+                        raise Exception("No transcript available for this video. This could be because: 1) The video has no subtitles, 2) The subtitles are disabled, or 3) The video is private.")
         except Exception as e:
             raise Exception(f"Failed to fetch transcript: {str(e)}")
 
