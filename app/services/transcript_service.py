@@ -21,8 +21,13 @@ class TranscriptService:
         response = requests.get(url)
         soup = BeautifulSoup(response.text, 'html.parser')
         
-        title = soup.find('meta', property='og:title')['content']
-        channel = soup.find('meta', property='og:site_name')['content']
+        # Get title from meta tag or fallback to video ID
+        title_tag = soup.find('meta', property='og:title')
+        title = title_tag['content'] if title_tag else f"Video {video_id}"
+        
+        # Get channel from meta tag or fallback to "Unknown Channel"
+        channel_tag = soup.find('meta', property='og:site_name')
+        channel = channel_tag['content'] if channel_tag else "Unknown Channel"
         
         return {
             'title': title,
