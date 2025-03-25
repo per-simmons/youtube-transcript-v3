@@ -15,6 +15,8 @@ def create_app():
     
     @app.route('/<path:path>')
     def serve_static_files(path):
+        if path.startswith('api/'):
+            return api.handle_request(path)
         return send_from_directory(app.static_folder, path)
     
     return app 
