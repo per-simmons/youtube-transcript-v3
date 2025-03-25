@@ -1,0 +1,365 @@
+"TimeUTC","timestampInMs","requestPath","requestMethod","requestQueryString","responseStatusCode","requestId","requestUserAgent","level","environment","branch","vercelCache","type","function","host","deploymentDomain","deploymentId","durationMs","region","maxMemoryUsed","memorySize","message","projectId"
+"2025-03-25 19:00:20",1742929220866,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/favicon.png","GET","",-1,"v7lfg-1742929219053-99fcb963e207","Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:133.0) Gecko/20100101 Firefox/133.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",-1,"iad1",-1,-1,"Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 19:00:19",1742929219095,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/favicon.png","GET","",500,"v7lfg-1742929219053-99fcb963e207","Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:133.0) Gecko/20100101 Firefox/133.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",1753,"iad1",76,1024,"","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 19:00:16",1742929216956,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/favicon.png","GET","",-1,"4cg8p-1742929215158-f3f7dc9d35e6","Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:133.0) Gecko/20100101 Firefox/133.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",-1,"iad1",-1,-1,"Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 19:00:15",1742929215199,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/favicon.png","GET","",500,"4cg8p-1742929215158-f3f7dc9d35e6","Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:133.0) Gecko/20100101 Firefox/133.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",1734,"iad1",76,1024,"","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 19:00:14",1742929214067,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/favicon.png","GET","",-1,"lnpxw-1742929212281-d5e020e0c459","Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:133.0) Gecko/20100101 Firefox/133.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",-1,"iad1",-1,-1,"Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 19:00:12",1742929212721,"youtube-transcript-v3.vercel.app/","GET","",-1,"bv6vj-1742929210846-7f2b79dada91","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3.vercel.app","youtube-transcript-v3.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",-1,"iad1",-1,-1,"Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 19:00:12",1742929212319,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/favicon.png","GET","",500,"lnpxw-1742929212281-d5e020e0c459","Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:133.0) Gecko/20100101 Firefox/133.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",1732,"iad1",76,1024,"","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 19:00:12",1742929212243,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/favicon.ico","GET","",-1,"qphn5-1742929210435-23bdee9a0641","Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:133.0) Gecko/20100101 Firefox/133.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",-1,"iad1",-1,-1,"Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 19:00:10",1742929210960,"youtube-transcript-v3.vercel.app/","GET","",500,"bv6vj-1742929210846-7f2b79dada91","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3.vercel.app","youtube-transcript-v3.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",1739,"iad1",76,1024,"","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 19:00:10",1742929210471,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/favicon.ico","GET","",500,"qphn5-1742929210435-23bdee9a0641","Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:133.0) Gecko/20100101 Firefox/133.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",1753,"iad1",76,1024,"","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 19:00:08",1742929208304,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/favicon.ico","GET","",-1,"qc2mx-1742929206457-e22b8e7e34a7","Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:133.0) Gecko/20100101 Firefox/133.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",-1,"iad1",-1,-1,"Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 19:00:06",1742929206507,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/favicon.ico","GET","",500,"qc2mx-1742929206457-e22b8e7e34a7","Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:133.0) Gecko/20100101 Firefox/133.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",1779,"iad1",76,1024,"","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 19:00:05",1742929205364,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/favicon.ico","GET","",-1,"t77q2-1742929203526-18cd41426cb7","Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:133.0) Gecko/20100101 Firefox/133.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",-1,"iad1",-1,-1,"Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 19:00:05",1742929205183,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/","GET","",-1,"cxw6f-1742929202016-0ec597fae474","Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:133.0) Gecko/20100101 Firefox/133.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",-1,"iad1",-1,-1,"Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.
+Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 19:00:03",1742929203570,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/favicon.ico","GET","",500,"t77q2-1742929203526-18cd41426cb7","Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:133.0) Gecko/20100101 Firefox/133.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",1767,"iad1",76,1024,"","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 19:00:03",1742929203075,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/","GET","",-1,"7qlzd-1742929199715-b2b095592ac5","Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:133.0) Gecko/20100101 Firefox/133.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",-1,"iad1",-1,-1,"Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.
+Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 19:00:02",1742929202071,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/","GET","",500,"cxw6f-1742929202016-0ec597fae474","Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:133.0) Gecko/20100101 Firefox/133.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",1756,"iad1",76,1024,"","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:59:59",1742929199759,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/","GET","",500,"7qlzd-1742929199715-b2b095592ac5","Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:133.0) Gecko/20100101 Firefox/133.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",1769,"iad1",76,1024,"","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:31:56",1742927516114,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/favicon.ico","GET","",-1,"f4tcv-1742927514170-1c7ce7e82f8b","vercel-screenshot/1.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",-1,"iad1",-1,-1,"Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:31:55",1742927515733,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/favicon.ico","GET","",-1,"5zz9q-1742927513885-b75d9d7a94e8","vercel-screenshot/1.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",-1,"iad1",-1,-1,"Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:31:54",1742927514206,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/favicon.ico","GET","",500,"f4tcv-1742927514170-1c7ce7e82f8b","vercel-screenshot/1.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",1892,"iad1",76,1024,"","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:31:54",1742927514098,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/","GET","",-1,"24j9f-1742927512140-e6ad35228826","vercel-screenshot/1.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",-1,"iad1",-1,-1,"Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:31:54",1742927514027,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/favicon.ico","GET","",500,"5zz9q-1742927513885-b75d9d7a94e8","vercel-screenshot/1.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",1689,"iad1",76,1024,"","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:31:53",1742927513769,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/","GET","",-1,"qwh9j-1742927512002-3209eacfbcbe","vercel-screenshot/1.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",-1,"iad1",-1,-1,"Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:31:52",1742927512180,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/","GET","",500,"24j9f-1742927512140-e6ad35228826","vercel-screenshot/1.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",1901,"iad1",76,1024,"","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:31:52",1742927512050,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/","GET","",500,"qwh9j-1742927512002-3209eacfbcbe","vercel-screenshot/1.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",1705,"iad1",76,1024,"","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:31:51",1742927511995,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/","GET","",-1,"44lsz-1742927510204-99fa2451e2e5","vercel-screenshot/1.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",-1,"iad1",-1,-1,"Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:31:51",1742927511876,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/","GET","",-1,"vfmtc-1742927509927-8b1ee397fd7c","vercel-screenshot/1.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",-1,"iad1",-1,-1,"Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:31:50",1742927510246,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/","GET","",500,"44lsz-1742927510204-99fa2451e2e5","vercel-screenshot/1.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",1724,"iad1",76,1024,"","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:31:49",1742927509962,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/","GET","",500,"vfmtc-1742927509927-8b1ee397fd7c","vercel-screenshot/1.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",1899,"iad1",76,1024,"","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:31:48",1742927508092,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/","GET","",-1,"xqqn6-1742927506122-8aff88d66272","vercel-screenshot/1.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",-1,"iad1",-1,-1,"Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:31:47",1742927507837,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/","GET","",-1,"vjmqp-1742927505979-e8d6f2d736a7","vercel-screenshot/1.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",-1,"iad1",-1,-1,"Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:31:46",1742927506158,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/","GET","",500,"xqqn6-1742927506122-8aff88d66272","vercel-screenshot/1.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",1906,"iad1",76,1024,"","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:31:46",1742927506126,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/","GET","",500,"vjmqp-1742927505979-e8d6f2d736a7","vercel-screenshot/1.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",1697,"iad1",76,1024,"","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:31:45",1742927505074,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/","GET","",-1,"9gqjz-1742927501949-5db39abf58ed","vercel-screenshot/1.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",-1,"iad1",-1,-1,"Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.
+Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:31:44",1742927504856,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/","GET","",-1,"dpgkn-1742927501649-87af1d9e3886","vercel-screenshot/1.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",-1,"iad1",-1,-1,"Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.
+Traceback (most recent call last):
+File ""/var/task/vc__handler__python.py"", line 14, in <module>
+__vc_spec.loader.exec_module(__vc_module)
+File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
+File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
+File ""/var/task/vercel_app.py"", line 1, in <module>
+from app.main import create_app
+File ""/var/task/app/main.py"", line 2, in <module>
+from .api.routes import api
+File ""/var/task/app/api/routes.py"", line 2, in <module>
+from ..services.transcript_service import TranscriptService
+File ""/var/task/app/services/transcript_service.py"", line 9, in <module>
+import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+Python process exited with exit status: 1. The logs above can help with debugging the issue.","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:31:42",1742927502101,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/","GET","",500,"9gqjz-1742927501949-5db39abf58ed","vercel-screenshot/1.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",1714,"iad1",76,1024,"","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"
+"2025-03-25 18:31:41",1742927501893,"youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app/","GET","",500,"dpgkn-1742927501649-87af1d9e3886","vercel-screenshot/1.0","error","production","main","MISS","lambda","/vercel_app.py","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","youtube-transcript-v3-8lu4use1f-pats-projects-b663c761.vercel.app","dpl_FjMMGHwXr42hXCcczYD9w79zxfSG",1916,"iad1",76,1024,"","prj_z87gaoX5t3oVfR3nrK3MogkCPNWr"

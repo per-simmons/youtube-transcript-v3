@@ -1,46 +1,69 @@
 from flask import Blueprint, request, jsonify
 from ..services.transcript_service import TranscriptService
-import sys
-import logging
 from youtube_transcript_api import YouTubeTranscriptApi
-
-# Set up logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+import sys
+import platform
 
 api = Blueprint('api', __name__)
-transcript_service = TranscriptService()
 
-@api.route('/api/debug', methods=['GET'])
-def debug_info():
-    """Endpoint to check environment and dependencies."""
+@api.route('/debug/<video_id>', methods=['GET'])
+def debug_video(video_id):
+    """Debug endpoint that shows all available transcripts for a video."""
     try:
+        # Get environment info
+        env_info = {
+            "python_version": sys.version,
+            "platform": platform.platform(),
+            "video_id": video_id
+        }
+        
+        # List all available transcripts
+        transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
+        
+        # Get manual transcripts
+        manual_transcripts = []
+        for transcript in transcript_list.manual_transcripts:
+            manual_transcripts.append({
+                "language": transcript.language,
+                "language_code": transcript.language_code,
+                "is_generated": transcript.is_generated,
+                "translation_languages": [lang.language_code for lang in transcript.translation_languages]
+            })
+            
+        # Get generated transcripts
+        generated_transcripts = []
+        for transcript in transcript_list.generated_transcripts:
+            generated_transcripts.append({
+                "language": transcript.language,
+                "language_code": transcript.language_code,
+                "is_generated": transcript.is_generated,
+                "translation_languages": [lang.language_code for lang in transcript.translation_languages]
+            })
+            
         return jsonify({
-            'python_version': sys.version,
-            'youtube_transcript_api_version': YouTubeTranscriptApi.__version__,
-            'platform': sys.platform,
-            'test_video_check': transcript_service.check_api_connection()
+            "environment": env_info,
+            "manual_transcripts": manual_transcripts,
+            "generated_transcripts": generated_transcripts,
+            "has_manual_transcripts": len(manual_transcripts) > 0,
+            "has_generated_transcripts": len(generated_transcripts) > 0
         })
+        
     except Exception as e:
-        logger.error(f"Debug endpoint error: {str(e)}")
-        return jsonify({'error': str(e)}), 500
+        return jsonify({
+            "error": str(e),
+            "environment": env_info
+        }), 500
 
-@api.route('/api/transcript', methods=['POST'])
-def get_transcript():
+@api.route('/process', methods=['POST'])
+def process_videos():
     try:
-        logger.info("Received transcript request")
         data = request.get_json()
-        urls = data.get('urls', [])
+        video_urls = data.get('urls', [])
         
-        if not urls:
-            logger.warning("No URLs provided in request")
-            return jsonify({'error': 'No URLs provided'}), 400
-        
-        logger.info(f"Processing {len(urls)} URLs")
-        results = transcript_service.process_multiple_videos(urls)
-        logger.info("Finished processing URLs")
-        return jsonify({'results': results})
-        
+        if not video_urls:
+            return jsonify({"error": "No URLs provided"}), 400
+            
+        results = TranscriptService.process_multiple_videos(video_urls)
+        return jsonify(results)
     except Exception as e:
-        logger.error(f"Error in transcript endpoint: {str(e)}")
-        return jsonify({'error': str(e)}), 500 
+        return jsonify({"error": str(e)}), 500 

@@ -7,6 +7,7 @@ import traceback
 import sys
 import platform
 import pkg_resources
+import re
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -59,19 +60,18 @@ class TranscriptService:
             return error_details
 
     @staticmethod
-    def get_video_id(url: str) -> Optional[str]:
+    def extract_video_id(url):
         """Extract video ID from YouTube URL."""
-        logger.info(f"Extracting video ID from URL: {url}")
-        if 'youtube.com' in url:
-            if 'v=' in url:
-                video_id = url.split('v=')[1].split('&')[0]
-                logger.info(f"Extracted video ID: {video_id}")
-                return video_id
-        elif 'youtu.be' in url:
-            video_id = url.split('/')[-1]
-            logger.info(f"Extracted video ID: {video_id}")
-            return video_id
-        logger.warning(f"Could not extract video ID from URL: {url}")
+        patterns = [
+            r'(?:v=|\/)([0-9A-Za-z_-]{11}).*',
+            r'(?:embed\/)([0-9A-Za-z_-]{11})',
+            r'(?:youtu\.be\/)([0-9A-Za-z_-]{11})'
+        ]
+        
+        for pattern in patterns:
+            match = re.search(pattern, url)
+            if match:
+                return match.group(1)
         return None
 
     @staticmethod
@@ -107,44 +107,92 @@ class TranscriptService:
             }
 
     @staticmethod
-    def get_transcript(video_id: str) -> List[Dict[str, str]]:
-        """Fetch transcript for a video."""
-        logger.info(f"Attempting to fetch transcript for video: {video_id}")
+    def get_transcript(url):
+        """Get transcript for a single video."""
+        video_id = TranscriptService.extract_video_id(url)
+        if not video_id:
+            return {"error": "Invalid YouTube URL format"}
+
+        logger.info(f"Attempting to fetch transcript for video ID: {video_id}")
         try:
-            # Log attempt details
-            api_version = TranscriptService.get_package_version('youtube_transcript_api')
-            logger.info(f"Environment: Python {sys.version}, Platform: {platform.platform()}")
-            logger.info(f"YouTube Transcript API Version: {api_version}")
-            
-            # Try direct transcript fetch first
-            transcript = YouTubeTranscriptApi.get_transcript(video_id)
-            logger.info(f"Successfully fetched transcript for video {video_id}")
-            return transcript
-        except TranscriptsDisabled as e:
-            error_msg = f"TranscriptsDisabled error: {str(e)}"
-            logger.error(error_msg)
-            logger.error(f"Full traceback: {traceback.format_exc()}")
-            raise Exception(error_msg)
-        except NoTranscriptFound as e:
-            error_msg = f"NoTranscriptFound error: {str(e)}"
-            logger.error(error_msg)
-            logger.error(f"Full traceback: {traceback.format_exc()}")
+            # First try: Direct transcript fetch
             try:
-                # If no transcript found, try with language specification
-                logger.info(f"Attempting to fetch English transcript for {video_id}")
-                transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['en'])
-                logger.info(f"Successfully fetched English transcript for {video_id}")
+                logger.info("Attempt 1: Direct transcript fetch")
+                transcript = YouTubeTranscriptApi.get_transcript(video_id)
+                logger.info("Direct transcript fetch successful")
                 return transcript
-            except Exception as e2:
-                error_msg2 = f"Second attempt failed: {str(e2)}"
-                logger.error(error_msg2)
-                logger.error(f"Full traceback: {traceback.format_exc()}")
-                raise Exception(f"Could not retrieve transcript. First error: {error_msg}, Second error: {error_msg2}")
+            except Exception as e:
+                logger.info(f"Direct transcript fetch failed: {str(e)}")
+
+            # Second try: List transcripts and try different approaches
+            logger.info("Attempt 2: Listing all available transcripts")
+            transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
+            
+            # Log available transcripts
+            logger.info("Available manual transcripts: " + 
+                       ", ".join([f"{t.language_code} ({t.language})" 
+                                for t in transcript_list.manual_transcripts]))
+            logger.info("Available generated transcripts: " + 
+                       ", ".join([f"{t.language_code} ({t.language})" 
+                                for t in transcript_list.generated_transcripts]))
+            
+            # Try different methods in sequence
+            try:
+                logger.info("Attempting to find English transcript")
+                transcript = transcript_list.find_transcript(['en'])
+                logger.info("Found English transcript")
+                return transcript.fetch()
+            except NoTranscriptFound:
+                try:
+                    logger.info("Attempting to find auto-generated English transcript")
+                    transcript = transcript_list.find_generated_transcript(['en'])
+                    logger.info("Found auto-generated English transcript")
+                    return transcript.fetch()
+                except NoTranscriptFound:
+                    try:
+                        logger.info("Attempting to find any manually created transcript")
+                        transcript = transcript_list.find_manually_created_transcript()
+                        logger.info(f"Found manual transcript in {transcript.language_code}")
+                        translated = transcript.translate('en')
+                        logger.info("Successfully translated to English")
+                        return translated.fetch()
+                    except NoTranscriptFound:
+                        try:
+                            logger.info("Attempting to find any generated transcript")
+                            transcript = transcript_list.find_generated_transcript()
+                            logger.info(f"Found generated transcript in {transcript.language_code}")
+                            translated = transcript.translate('en')
+                            logger.info("Successfully translated to English")
+                            return translated.fetch()
+                        except NoTranscriptFound:
+                            logger.info("Attempting last resort: any available transcript")
+                            transcripts = transcript_list.manual_transcripts + transcript_list.generated_transcripts
+                            if transcripts:
+                                transcript = transcripts[0]
+                                logger.info(f"Found transcript in {transcript.language_code}")
+                                translated = transcript.translate('en')
+                                logger.info("Successfully translated to English")
+                                return translated.fetch()
+                            
+            logger.error("No transcript found after trying all methods")
+            raise NoTranscriptFound("No transcript found after trying all methods")
+            
+        except TranscriptsDisabled as e:
+            logger.error(f"TranscriptsDisabled error for video {video_id}: {str(e)}")
+            return {
+                "error": "Transcripts are disabled for this video",
+                "details": "The video owner has disabled subtitles/closed captions. Please try a different video that has captions enabled."
+            }
+        except NoTranscriptFound as e:
+            logger.error(f"NoTranscriptFound error for video {video_id}: {str(e)}")
+            return {
+                "error": "No transcript found",
+                "details": "Could not find any transcripts for this video after trying multiple methods. Please verify that the video has captions available."
+            }
         except Exception as e:
-            error_msg = f"Unexpected error: {str(e)}"
-            logger.error(error_msg)
+            logger.error(f"Unexpected error for video {video_id}: {str(e)}")
             logger.error(f"Full traceback: {traceback.format_exc()}")
-            raise Exception(error_msg)
+            return {"error": f"Error fetching transcript: {str(e)}"}
 
     @staticmethod
     def format_transcript(transcript: List[Dict[str, str]], metadata: Dict[str, str]) -> str:
@@ -166,13 +214,13 @@ class TranscriptService:
     def process_video(self, url: str) -> Dict[str, str]:
         """Process a single video URL and return formatted transcript."""
         logger.info(f"Processing video URL: {url}")
-        video_id = self.get_video_id(url)
+        video_id = self.extract_video_id(url)
         if not video_id:
             logger.error(f"Invalid YouTube URL: {url}")
             raise ValueError("Invalid YouTube URL")
 
         metadata = self.get_video_metadata(video_id)
-        transcript = self.get_transcript(video_id)
+        transcript = self.get_transcript(url)
         formatted_transcript = self.format_transcript(transcript, metadata)
         
         logger.info(f"Successfully processed video: {metadata['title']}")
@@ -181,24 +229,21 @@ class TranscriptService:
             'transcript': formatted_transcript
         }
 
-    def process_multiple_videos(self, urls: List[str]) -> List[Dict[str, str]]:
-        """Process multiple videos and return formatted transcripts."""
-        logger.info(f"Processing multiple videos: {len(urls)} URLs")
-        api_version = self.get_package_version('youtube_transcript_api')
-        logger.info(f"Environment: Python {sys.version}, Platform: {platform.platform()}")
-        logger.info(f"YouTube Transcript API Version: {api_version}")
-        
-        results = []
+    @staticmethod
+    def process_multiple_videos(urls):
+        """Process multiple video URLs and return their transcripts."""
+        results = {}
         for url in urls:
-            try:
-                result = self.process_video(url.strip())
-                results.append(result)
-            except Exception as e:
-                logger.error(f"Error processing video {url}: {str(e)}")
-                logger.error(f"Full traceback: {traceback.format_exc()}")
-                results.append({
-                    'title': url,
-                    'error': str(e)
-                })
-        logger.info(f"Finished processing {len(urls)} videos")
+            transcript = TranscriptService.get_transcript(url)
+            if isinstance(transcript, list):  # Successful transcript
+                results[url] = {
+                    "status": "success",
+                    "transcript": transcript
+                }
+            else:  # Error occurred
+                results[url] = {
+                    "status": "error",
+                    "error": transcript.get("error", "Unknown error"),
+                    "details": transcript.get("details", "")
+                }
         return results 
