@@ -1,4 +1,4 @@
-from youtube_transcript_api import YouTubeTranscriptApi
+from youtube_transcript_api import YouTubeTranscriptApi, TranscriptsDisabled, NoTranscriptFound
 import requests
 from bs4 import BeautifulSoup
 from typing import Dict, List, Optional
@@ -39,8 +39,18 @@ class TranscriptService:
     def get_transcript(video_id: str) -> List[Dict[str, str]]:
         """Fetch transcript for a video."""
         try:
-            transcript = YouTubeTranscriptApi.get_transcript(video_id)
+            # First try to get the transcript in English
+            transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['en'])
             return transcript
+        except NoTranscriptFound:
+            # If no English transcript, try to get any available transcript
+            try:
+                transcript = YouTubeTranscriptApi.get_transcript(video_id)
+                return transcript
+            except Exception as e:
+                raise Exception(f"No transcript available for this video. This could be because: 1) The video has no subtitles, 2) The subtitles are disabled, or 3) The video is private.")
+        except TranscriptsDisabled:
+            raise Exception("Transcripts are disabled for this video.")
         except Exception as e:
             raise Exception(f"Failed to fetch transcript: {str(e)}")
 
