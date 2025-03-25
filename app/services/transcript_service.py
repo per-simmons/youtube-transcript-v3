@@ -6,6 +6,7 @@ import logging
 import traceback
 import sys
 import platform
+import pkg_resources
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -13,15 +14,24 @@ logger = logging.getLogger(__name__)
 
 class TranscriptService:
     @staticmethod
+    def get_package_version(package_name: str) -> str:
+        """Get package version safely."""
+        try:
+            return pkg_resources.get_distribution(package_name).version
+        except Exception:
+            return "unknown"
+
+    @staticmethod
     def check_api_connection() -> Dict[str, str]:
         """Test the YouTube Transcript API with a known working video."""
         test_video_id = "EngW7tLk6R8"  # This is a popular video we know has transcripts
         try:
             logger.info(f"Testing API connection with video {test_video_id}")
             # Log environment details
+            api_version = TranscriptService.get_package_version('youtube_transcript_api')
             logger.info(f"Python Version: {sys.version}")
             logger.info(f"Platform: {platform.platform()}")
-            logger.info(f"YouTube Transcript API Version: {YouTubeTranscriptApi.__version__}")
+            logger.info(f"YouTube Transcript API Version: {api_version}")
             
             transcript = YouTubeTranscriptApi.get_transcript(test_video_id)
             return {
@@ -31,7 +41,7 @@ class TranscriptService:
                 'environment': {
                     'python_version': sys.version,
                     'platform': platform.platform(),
-                    'api_version': YouTubeTranscriptApi.__version__
+                    'api_version': api_version
                 }
             }
         except Exception as e:
@@ -42,7 +52,7 @@ class TranscriptService:
                 'environment': {
                     'python_version': sys.version,
                     'platform': platform.platform(),
-                    'api_version': getattr(YouTubeTranscriptApi, '__version__', 'unknown')
+                    'api_version': TranscriptService.get_package_version('youtube_transcript_api')
                 }
             }
             logger.error(f"API connection test failed: {error_details}")
@@ -102,8 +112,9 @@ class TranscriptService:
         logger.info(f"Attempting to fetch transcript for video: {video_id}")
         try:
             # Log attempt details
+            api_version = TranscriptService.get_package_version('youtube_transcript_api')
             logger.info(f"Environment: Python {sys.version}, Platform: {platform.platform()}")
-            logger.info(f"YouTube Transcript API Version: {YouTubeTranscriptApi.__version__}")
+            logger.info(f"YouTube Transcript API Version: {api_version}")
             
             # Try direct transcript fetch first
             transcript = YouTubeTranscriptApi.get_transcript(video_id)
@@ -173,8 +184,9 @@ class TranscriptService:
     def process_multiple_videos(self, urls: List[str]) -> List[Dict[str, str]]:
         """Process multiple videos and return formatted transcripts."""
         logger.info(f"Processing multiple videos: {len(urls)} URLs")
+        api_version = self.get_package_version('youtube_transcript_api')
         logger.info(f"Environment: Python {sys.version}, Platform: {platform.platform()}")
-        logger.info(f"YouTube Transcript API Version: {YouTubeTranscriptApi.__version__}")
+        logger.info(f"YouTube Transcript API Version: {api_version}")
         
         results = []
         for url in urls:
