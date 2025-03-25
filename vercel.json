@@ -14,6 +14,10 @@
         {
             "src": "/(.*)",
             "dest": "/app/static/$1"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "run.py"
         }
     ]
 } 
